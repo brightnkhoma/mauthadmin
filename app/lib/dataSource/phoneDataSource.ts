@@ -32,10 +32,12 @@ interface Res{
     status : boolean;
     message : string
 }
+
+const host = "https://mauthpy-4.onrender.com" as const
 export class PhoneDataSource implements PhoneDataSourceSignature{
     async reregister (data: PhoneNumber) : Promise<CommitResult>{
         try {
-            const results = await axios.post("http://192.168.43.48:8000/reregister/",JSON.stringify(data))
+            const results = await axios.post(host + "/reregister/",JSON.stringify(data))
             if(results.status == 200){
                 const resData = results.data as Res
                 return {success : resData["status"],message : resData["message"]}
@@ -52,7 +54,7 @@ export class PhoneDataSource implements PhoneDataSourceSignature{
         try {
             console.log(data);
             
-            const results = await axios.post("http://192.168.43.48:8000/statement/answer/",JSON.stringify(data))
+            const results = await axios.post(host + "/statement/answer/",JSON.stringify(data))
             if(results.status == 200){
                 const resData = results.data
                 return resData as StatementCommitResult
@@ -67,7 +69,7 @@ export class PhoneDataSource implements PhoneDataSourceSignature{
     }
     async register (data: PhoneNumber) : Promise<CommitResult>{
         try {
-            const results = await axios.post("http://192.168.43.48:8000/simregister/",JSON.stringify(data))
+            const results = await axios.post(host + "/simregister/",JSON.stringify(data))
             if(results.status == 200){
                 const resData = results.data
                 return {success : resData["status"] ,message : resData["message"]}

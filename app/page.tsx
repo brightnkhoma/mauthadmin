@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import heroImage from '/public/hero.jpg'; // Import the image
 
 export default function Page() {
   return (
@@ -21,7 +22,17 @@ export default function Page() {
           </p>
         </div>
         <div className='rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-300 animate-fade-in-up'>
-          <Image className='w-full h-auto' src="/hero.jpg" alt="Secure Transactions" />
+     
+
+<Image
+  src={heroImage}
+  alt="Secure Transactions"
+  width={1200}
+  height={800}
+  className="w-full h-auto rounded-3xl shadow-2xl hover:shadow-3xl transition-shadow duration-300 animate-fade-in-up"
+  placeholder="blur"
+  priority
+/>
         </div>
       </div>
 
